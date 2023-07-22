@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Left Panel Navigation</title>
+  <style>
+    body {
+      margin:10px;
+      display:flex;
+    }
+
+    #left-panel {
+        font-size: 17px;
+      width: 200px;
+      background-color:palevioletred;
+      text-decoration: underline;
+      padding: 50px;
+      box-sizing:border-box;
+      height: 100vh;
+      
+    }
+
+    #content {
+      flex:2;
+      padding: 20px;
+    }
+
+    .component {
+      cursor:grab;
+      padding: 10px;
+    }
+    body {
+      background-image: url(https://img.pikbest.com/backgrounds/20220119/diffuse-light-geometric-figures-are-simple-and-fresh_6239530.jpg!bwr800);
+      background-position:center;
+      background-repeat: no-repeat;
+      background-size: cover;
+    }
+    script{
+        font-size: 50px;
+    }
+
+  </style>
+</head>
+<body>
+  <div id="left-panel">
+    <div class="component" onclick="showContent('home')">Home</div>
+    <div class="component" onclick="showContent('contact')">Contact</div>
+    <div class="component" onclick="showContent('information')">Information</div>
+    <div class="component" onclick="showContent('guide')">Guide</div>
+  </div>
+  <div id="content">
+    <h1>Welcome to our website</h1>
+    <p>This is the home page content.</p>
+  </div>
+
+  <script >
+    function showContent(component) {
+      const contentDiv = document.getElementById('content');
+      let content = '';
+
+      switch (component) {
+        case 'home':
+          content = `
+            <h1>Welcome to our website</h1>
+            <p>This is the home page content.</p>
+          `;
+          break;
+        case 'contact':
+          content = `
+            <h1>Contact Information</h1>
+            <p>Email: contact@example.com</p>
+            <p>Phone: +1 123-456-7890</p>
+          `;
+          break;
+        case 'information':
+          content = `
+            <h1>Information</h1>
+            <p>Here is some general information.</p>
+          `;
+          break;
+        case 'guide':
+          content = `
+            <h1>User Guide</h1>
+            <p>Here is a guide on how to use our website.</p>
+          `;
+          break;
+        default:
+          content = `
+            <h1>Welcome to our website</h1>
+            <p>This is the home page content.</p>
+          `;
+      }
+
+      contentDiv.innerHTML = content;
+    }
+  </script>
+</body>
+</html>
