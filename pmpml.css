@@ -1,0 +1,142 @@
+label {
+      display: block;
+      margin-bottom: 5px;
+    }
+    select, input[type="text"] {
+      margin-bottom: 10px;
+    }
+  
+    /* Styles for ticket machine */
+    .ticket-machine {
+      width: 300px;
+      padding: 20px;
+      background-color: #f0f0f0;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    /* Styles for ticket form */
+    .ticket-form {
+      margin-bottom: 10px;
+      border: 1px solid black;
+      padding: 50px;
+      
+    }
+
+    /* Styles for ticket output */
+    .ticket-output {
+      border: 1px solid #ccc;
+      padding: 10px;
+      background-color: #fff;
+    }
+    
+     /* Styles for QR code */
+    .qr-code {
+      text-align: center;
+      margin-top: 20px;
+      width:10px;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+body {
+  font-family: Arial, sans-serif;
+  padding: 20px;
+}
+
+h1 {
+  text-align: center;
+}
+
+#ticket-form {
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+label {
+  display: block;
+  margin-bottom: 10px;
+}
+
+select, input[type="text"] {
+  width: 100%;
+  padding: 5px;
+  margin-bottom: 20px;
+}
+
+button {
+  padding: 10px 20px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+#qr-code-container {
+  text-align: center;
+  margin-top: 30px;
+}
+.ticket-machine {
+      width: 300px;
+      padding: 20px;
+      background-color: #f0f0f0;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    /* Styles for ticket form */
+    .ticket-form {
+      margin-bottom: 10px;
+    }
+
+    /* Styles for ticket output */
+    .ticket-output {
+      border: 1px solid #ccc;
+      padding: 10px;
+      background-color: #fff;
+    }

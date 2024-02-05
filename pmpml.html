@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>PMPML Ticket Machine</title>
+  <link rel="stylesheet" type="text/css" href="pmpml.css">
+
+</head>
+<body>
+  <h1>PMPML Ticket Machine</h1>
+  <form id="ticket-form" class="ticket-form">
+    <label for="from-stop">From Stop:</label>
+    <select id="from-stop" name="from-stop">
+      <option value="Hadapsar">Hadapsar</option>
+      <option value="South Gate">South Gate</option>
+      <option value="Main Gate">Main Gate</option>
+      <option value="Amnora Mall">Amnora Mall</option>
+      <option value="Mundhwa">Mundhwa</option>
+      <option value="Sainath Nagar">Sainath Nagar</option>
+      <option value="Wagholi">Wagholi</option>
+    </select>
+    <br>
+    <label for="to-stop">To Stop:</label>
+    <select id="to-stop" name="to-stop">
+      <option value="Hadapsar">Hadapsar</option>
+      <option value="South Gate">South Gate</option>
+      <option value="Main Gate">Main Gate</option>
+      <option value="Amnora Mall">Amnora Mall</option>
+      <option value="Mundhwa">Mundhwa</option>
+      <option value="Sainath Nagar">Sainath Nagar</option>
+      <option value="Wagholi">Wagholi</option>
+    </select>
+    <br>
+    <label for="ticket-type">Ticket Type:</label>
+    <select id="ticket-type" name="ticket-type" onchange="updateForm()">
+      <option value="full">Full Ticket</option>
+      <option value="half">Half Ticket</option>
+      <option value="pass">Daily Pass</option>
+    </select>
+    <br>
+    <label for="quantity">Quantity:</label>
+    <input type="number" id="quantity" name="quantity" min="0" value="0">
+        <br><br>
+    <div id="pass-info-group" style="display:none;">
+    <label for="gender">Gender:</label>
+    <select id="gender" name="gender">
+    <option value="male">Male</option>
+    <option value="female">Female</option>
+    <option value="other">Other</option>
+    </select>
+    <br>
+    <label for="pass-id">Pass ID:</label>
+    <input type="text" id="pass-id" name="pass-id">
+    <br>
+    <label for="pass-price">Pass Price:</label>
+    <select id="pass-price" name="pass-price">
+        <option value="40">40</option>
+        <option value="50">50</option>
+      </select>
+      <br>
+    </div>
+    <label for="ticket-price">Ticket Price:</label>
+    <input type="text" id="ticket-price" name="ticket-price" readonly>
+    <br>
+    <button type="button" onclick="calculatePrice()">Calculate Price</button></t>
+    <button type="button" onclick="generateTicket()">Generate Ticket</button></t><br><br>
+    
+    
+   
+   
+    <form id="payment-form"> 
+    <button type="submit">
+    <a href="rutuja.jpeg">Generate QR Code</a></button>
+    
+  
+    <div class="ticket-output" id="ticket-output"></div>
+   
+    <hr>
+    <h2>Ticket Details:</h2>
+    <p><strong>Date and Time:</strong> <span id="date-time-value"></span></p>
+    <p id="tic1"><strong>From Stop:</strong> <span id="from-stop-value"></span></p>
+    <p id="tic2"><strong>To Stop:</strong> <span id="to-stop-value"></span></p>
+    <p><strong>Ticket Type:</strong> <span id="ticket-type-value"></span></p>
+    
+    <div id="passinfo">
+    <p><strong>Gender:</strong> <span id="gender-value"></span></p>
+    <p><strong>Pass ID:</strong> <span id="pass-id-value"></span></p>
+    <p><strong>Pass Price:</strong> <span id="pass-price-value"></span></p>
+    </div>
+    <div id="tic">
+    <p><strong>Quantity:</strong> <span id="quantity-value"></span></p>
+    <p><strong>Ticket Price:</strong> <span id="ticket-price-value"></span></p>
+    
+    </div>
+    </form>
+
+  <script>
+    function updateForm() {
+      var ticketType = document.getElementById("ticket-type").value;
+      var passInfoGroup = document.getElementById("pass-info-group");
+
+      if (ticketType === "pass") {
+        passInfoGroup.style.display = "block";
+      } else {
+        passInfoGroup.style.display = "none";
+      }
+    }
+
+    function calculatePrice() {
+      var fromStop = document.getElementById("from-stop").value;
+      var toStop = document.getElementById("to-stop").value;
+      var ticketType = document.getElementById("ticket-type").value;
+      var quantity = document.getElementById("quantity").value;
+      var ticketPrice = 0;
+
+      // Calculate ticket price based on destination
+      if (fromStop === "Hadapsar" && toStop === "South Gate") {
+        ticketPrice = 10; // Assuming ticket price from Hadapsar to South Gate is 10
+      } else if (fromStop === "Hadapsar" && toStop === "Main Gate") {
+        ticketPrice = 15; // Assuming ticket price from Hadapsar to Main Gate is 15
+      } else if (fromStop === "Hadapsar" && toStop === "Amnora Mall") {
+        ticketPrice = 20; // Assuming ticket price from Hadapsar to Amnora Mall is 20
+      } else if (fromStop === "Hadapsar" && toStop === "Mundhwa") {
+        ticketPrice = 25; // Assuming ticket price from Hadapsar to Mundhwa is 25
+      } else if (fromStop === "Hadapsar" && toStop === "Sainath Nagar") {
+        ticketPrice = 30; // Assuming ticket price from Hadapsar to Sainath Nagar is 30
+      } else if (fromStop === "Hadapsar" && toStop === "Wagholi") {
+        ticketPrice = 35; // Assuming ticket price from Hadapsar to Wagholi is 35
+      } else if (fromStop === "South Gate" && toStop === "Hadaspar") {
+        ticketPrice = 10; // Assuming ticket price from South Gate to Hadapsar is 10
+      } else if (fromStop === "Main Gate" && toStop === "Hadapsar") {
+        ticketPrice = 15; // Assuming ticket price from Main Gate to Hadapsar is 15
+      } else if (fromStop === "Amnora Mall" && toStop ==="Hadapsar") {
+        ticketPrice = 20; // Assuming ticket price from Amnora Mall to Hadapsar is 20
+      } else if (fromStop === "Mundhwa" && toStop === "Hadapsar") {
+        ticketPrice = 25; // Assuming ticket price from Mundhwa to Hadapsar is 25
+      } else if (fromStop === "Sainathnagar" && toStop === "Hadapsar") {
+        ticketPrice = 30; // Assuming ticket price from Sainath Nagar to Hadapsar is 30
+      } else if (fromStop === "Wagholi" && toStop === "Hadapsar") {
+        ticketPrice = 35; // Assuming ticket price from Hadapsar to Wagholi is 35
+      }
+
+      // Calculate half ticket price
+      if (ticketType === "half") {
+        ticketPrice /= 2;
+      }
+
+
+
+// Calculate total ticket price based on quantity
+  var totalTicketPrice = ticketPrice * quantity;
+
+  // Display ticket price
+  document.getElementById("ticket-price").value = totalTicketPrice;
+}
+
+    function generateTicket() {
+      var fromStop = document.getElementById("from-stop").value;
+      var toStop = document.getElementById("to-stop").value;
+      var ticketType = document.getElementById("ticket-type").value;
+      var gender = document.getElementById("gender").value;
+      var passId = document.getElementById("pass-id").value;
+      var passPrice = document.getElementById("pass-price").value;
+      var ticketPrice = document.getElementById("ticket-price").value;
+      var quantity = document.getElementById("quantity").value;
+
+      // Display ticket details
+      var dateTime = new Date();
+      document.getElementById("date-time-value").textContent = dateTime.toLocaleString();
+      document.getElementById("from-stop-value").textContent = fromStop;
+      document.getElementById("to-stop-value").textContent = toStop;
+      document.getElementById("ticket-type-value").textContent = ticketType;
+
+      if (ticketType === "pass") {
+        document.getElementById("tic").hidden=true;
+        document.getElementById("tic1").hidden=true;
+        document.getElementById("tic2").hidden=true;
+        document.getElementById("passinfo").hidden=false;
+        document.getElementById("gender-value").textContent = gender;
+        document.getElementById("pass-id-value").textContent = passId;
+        document.getElementById("pass-price-value").textContent = passPrice;
+      } else if (ticketType === "full" || "half"){
+       document.getElementById("passinfo").hidden = true;
+       document.getElementById("tic").hidden=false;
+        document.getElementById("tic1").hidden=false;
+        document.getElementById("tic2").hidden=false;
+      }
+
+      document.getElementById("ticket-price-value").textContent = ticketPrice;
+      document.getElementById("quantity-value").textContent = quantity;
+
+      // Clear form fields
+      document.getElementById("from-stop").value = "Hadapsar";
+      document.getElementById("to-stop").value = "Hadapsar";
+      document.getElementById("ticket-type").value = "full";
+      document.getElementById("gender").value = "male";
+      document.getElementById("pass-id").value = "";
+      document.getElementById("pass-price").value = "40";
+      document.getElementById("ticket-price").value = "";
+      document.getElementById("quantity").value = "0";
+      
+      
+      // Display ticket output
+      var ticketOutput = document.getElementById("ticket-output");
+      ticketOutput.innerHTML = "  PMPML Ticket";
+       ticketOutput.innerHTML += "<p>Date and Time: " + dateTime.toLocaleString() + "</p>";
+     
+
+      if (ticketType === "pass") {
+        var passInfo = document.createElement("p");
+        passInfo.textContent = "Pass ID: " + passId + " | Gender: " + gender + " | Pass Price: " + passPrice;
+        ticketOutput.appendChild(passInfo);
+      }
+         else {
+      var ticketInfo = document.createElement("p");
+      ticketInfo.textContent = "From: " + fromStop + " | To: " + toStop + " | Ticket Type: " + ticketType +" |Quantity: " + quantity + "| Ticket Price: " + ticketPrice;
+      ticketOutput.appendChild(ticketInfo);
+    }
+    }
+     
+  </script>
+</body>
+</html>
+
